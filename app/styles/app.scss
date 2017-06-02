@@ -1,0 +1,158 @@
+@import 'normalize';
+
+$toolbar-height: 56px;
+$grey-100: #f5f5f5;
+$grey-600: #757575;
+$foreground-dark: rgba(0, 0, 0, .54);
+
+$flex-justify-content-values: ('flex-start', 'flex-end', 'center', 'space-between', 'space-around');
+$flex-align-items-values: ('flex-start', 'flex-end', 'center', 'stretch', 'baseline');
+
+
+$primary-font: 'Roboto', sans-serif;
+$secondary-font: 'adobe-garamond-pro';
+$code-font: 'Courier New', monospace;
+
+.primary-font-thin,
+%primary-font-thin {
+    font-family: $primary-font;
+    font-weight: 100;
+}
+
+.primary-font-thin-italic,
+%primary-font-thin-italic {
+    font-family: $primary-font;
+    font-style: italic;
+    font-weight: 100;
+}
+
+.primary-font-light,
+%primary-font-light {
+    font-family: $primary-font;
+    font-weight: 300;
+}
+
+@mixin flex-options {
+    &.flex-wrap {
+        flex-wrap: wrap;
+    }
+
+    // CSS class options for justify-content
+    @each $layout-val in $flex-justify-content-values {
+        &.justify-content-#{$layout-val} {
+            justify-content: #{$layout-val};
+        }
+    }
+
+    // CSS class options for align-items
+    @each $layout-val in $flex-align-items-values {
+        &.align-items-#{$layout-val} {
+            align-items: #{$layout-val};
+        }
+    }
+}
+
+.flex-row,
+%flex-row {
+    @include flex-options;
+    display: flex;
+}
+
+.flex-column,
+%flex-column {
+    @include flex-options;
+    display: flex;
+    flex-direction: column;
+}
+
+
+body {
+    background-color: $grey-100;
+    display: flex;
+    flex-direction: column;
+}
+
+.top-toolbar {
+    height: $toolbar-height;
+    position: fixed; // Set the navbar to fixed position
+    top: 0; // Position the navbar at the top of the page
+    width: 100vw; // Full width
+}
+
+main {
+    -webkit-overflow-scrolling: touch;  // sass-lint:disable-line no-vendor-prefixes no-misspelled-properties
+    margin-top: $toolbar-height;
+    min-height: calc(100vh - #{$toolbar-height});
+    overflow-x: auto;
+}
+
+.toolbar,
+%toolbar {
+    background-color: white;
+    min-height: 56px;
+    width: 100%;
+}
+
+.top-toolbar {
+    @extend %toolbar;
+    @extend %flex-row;
+    align-items: center;
+    box-shadow: 0 0 10px $foreground-dark;
+    justify-content: space-between;
+    min-height: $toolbar-height;
+    position: relative;
+
+    .menu-button {
+        margin-left: 16px;
+    }
+
+    .menu-button,
+    .toolbar-button,
+    .toolbar-menu-toggle {
+        color: $grey-600;
+
+        i {
+            color: $grey-600;
+        }
+    }
+
+    .toolbar-button,
+    .toolbar-menu-toggle {
+        @extend %primary-font-light;
+    }
+
+    .toolbar-menu-toggle,
+    .toolbar-menu-toggle > i {
+        transition-duration: .5s;
+    }
+
+    .zb-menu {
+        margin-left: 24px;
+    }
+
+    .logo {
+        padding-left: 60px;
+        padding-top: 8px;
+        width: 135px;
+
+        &.logo-menu-button-padding {
+            padding-left: 8px;
+        }
+    }
+
+    .left-buttons {
+        @extend %flex-row;
+        align-items: center;
+    }
+
+    .right-buttons {
+        @extend %flex-row;
+        align-items: center;
+        padding-right: 16px;
+    }
+
+    .title {
+        @extend %primary-font-light;
+        margin-left: 8px;
+    }
+}
