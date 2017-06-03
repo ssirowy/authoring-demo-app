@@ -4,14 +4,43 @@ $toolbar-height: 56px;
 $grey-100: #f5f5f5;
 $grey-600: #757575;
 $foreground-dark: rgba(0, 0, 0, .54);
+$body-text-color: #37474f;
 
 $flex-justify-content-values: ('flex-start', 'flex-end', 'center', 'space-between', 'space-around');
 $flex-align-items-values: ('flex-start', 'flex-end', 'center', 'stretch', 'baseline');
 
-
 $primary-font: 'Roboto', sans-serif;
 $secondary-font: 'adobe-garamond-pro';
 $code-font: 'Courier New', monospace;
+
+// Variable used to provide shadows to controls like cards and menus
+$shadow-multiplier: .7;
+$shadow-key-umbra-opacity: $shadow-multiplier * .2;
+$shadow-key-penumbra-opacity: $shadow-multiplier * .14;
+$shadow-ambient-shadow-opacity: $shadow-multiplier * .12;
+
+$box-shadow-penumbra-color: rgba(0, 0, 0, $shadow-key-penumbra-opacity);
+$box-shadow-umbra-color: rgba(0, 0, 0, $shadow-key-umbra-opacity);
+$box-shadow-ambient-color: rgba(0, 0, 0, $shadow-ambient-shadow-opacity);
+
+$whiteframe-shadow-z1: 0 3px 1px -2px $box-shadow-umbra-color, 0 2px 2px 0 $box-shadow-penumbra-color, 0 1px 5px 0 $box-shadow-ambient-color !default;
+
+// Body text
+.body-text,
+%body-text {
+    @extend %primary-font-light;
+    line-height: 1.4;
+}
+
+h1,
+h2,
+h3,
+h4,
+h5,
+h6,
+.body-text {
+    color: $body-text-color;
+}
 
 .primary-font-thin,
 %primary-font-thin {
@@ -30,6 +59,12 @@ $code-font: 'Courier New', monospace;
 %primary-font-light {
     font-family: $primary-font;
     font-weight: 300;
+}
+
+.primary-font-regular,
+%primary-font-regular {
+    font-family: $primary-font;
+    font-weight: 400;
 }
 
 @mixin flex-options {
@@ -154,5 +189,74 @@ main {
     .title {
         @extend %primary-font-light;
         margin-left: 8px;
+    }
+}
+
+$zb-card-content-padding: 24px;
+
+.zb-card {
+    @extend %flex-column;
+    background-color: white;
+    border-radius: 2px;
+    box-shadow: $whiteframe-shadow-z1;
+    box-sizing: border-box;
+
+    &.loading-card {
+        margin: 10% auto auto;
+        width: 120px;
+
+        .zb-card-content {
+            @extend %flex-column;
+            padding-bottom: 8px;
+            padding-top: 16px;
+            position: relative;
+        }
+
+        .zb-progress-circular {
+            margin: auto;
+        }
+
+        h2 {
+            @extend %primary-font-regular;
+            font-size: 16px;
+            margin-bottom: 8px;
+            margin-top: 8px;
+        }
+    }
+
+    .zb-card-content {
+        padding: $zb-card-content-padding;
+
+        > *:first-child {
+            margin-top: 0;
+        }
+
+        > *:last-child {
+            margin-bottom: 0;
+        }
+    }
+}
+
+.section-container {
+    display: flex;
+    flex-direction: column;
+    flex-grow: 1;
+    margin: auto;
+    max-width: 1200px;
+}
+
+.zybook-section {
+    @extend %body-text;
+    display: flex;
+    flex-direction: column;
+
+    h2 {
+        @extend %primary-font-regular;
+        font-size: 32px;
+        margin-left: 16px;
+    }
+
+    .zb-card-content {
+        margin: auto;
     }
 }
