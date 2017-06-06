@@ -1,4 +1,4 @@
-export default function sectionData() {
+export default function fetchSectionData() {
 
     return {
         "section": {
