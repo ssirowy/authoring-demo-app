@@ -11,23 +11,25 @@
 <main>
     <section class='section-container'>
       <article class='zybook-section zb-card'>
-        <h2>{{section.title}}</h2>
         <div class='zb-card-content'>
-          It doesn't look so shiny to me. No! I want to live! There are still too many things I don't own! There's one way and only one way to determine if an animal is intelligent. Dissect its brain! You won't have time for sleeping, soldier, not with all the bed making you'll be doing.
 
-You guys aren't Santa! You're not even robots. How dare you lie in front of Jesus? Belligerent and numerous. Come, Comrade Bender! We must take to the streets! Why, those are the Grunka-Lunkas! They work here in the Slurm factory.
+                  <h2>{{section.title}}</h2>
+        <section>
+          <h3>Work log</h3>
+          <ul>
+            {{#each section.zypInfos as |info|}}
+            <li>{{info.name}} - {{info.text}} {{moment info.timestamp 'MM-DD-YYYY'}}</li>
+            {{/each}}
+          </ul>
+        </section>
 
-Oh God, what have I done? For example, if you killed your grandfather, you'd cease to exist! You mean while I'm sleeping in it? Pansy. I had more, but you go ahead. Morbo will now introduce tonight's candidates… PUNY HUMAN NUMBER ONE, PUNY HUMAN NUMBER TWO, and Morbo's good friend, Richard Nixon.
-
-I videotape every customer that comes in here, so that I may blackmail them later. Fry! Stay back! He's too powerful! There's no part of that sentence I didn't like! No! The cat shelter's on to me. But I've never been to the moon!
-
-Yes! In your face, Gandhi! It must be wonderful. I'll tell them you went down prying the wedding ring off his cold, dead finger. I don't want to be rescued. I was having the most wonderful dream. Except you were there, and you were there, and you were there!
-
-You can crush me but you can't crush my spirit! Ow, my spirit! Are you crazy? I can't swallow that. Hey, tell me something. You've got all this money. How come you always dress like you're doing your laundry?
-
-If rubbin' frozen dirt in your crotch is wrong, hey I don't wanna be right. Anyone who laughs is a communist! You guys aren't Santa! You're not even robots. How dare you lie in front of Jesus? We need rest. The spirit is willing, but the flesh is spongy and bruised.
-
-Oh, how I wish I could believe or understand that! There's only one reasonable course of action now: kill Flexo! Soon enough. Ooh, name it after me! Stop! Don't shoot fire stick in space canoe! Cause explosive decompression!
+        <section>
+          <ul>
+            {{#each section.contentResources as |cr|}}
+                <li>{{cr.type}}</li>
+            {{/each}}
+          </ul>
+        </section>
         </div>
         </article>
     </section>
