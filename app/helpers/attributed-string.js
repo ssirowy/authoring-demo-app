@@ -1,7 +1,20 @@
 import Ember from 'ember';
 
 const generateDefinitionHTML = function(definition) {
-    return Ember.String.htmlSafe('<b>DEFINITION</b>');
+
+    const definitionArray = definition['#'];
+    let htmlString = '';
+
+    definitionArray.forEach(element => {
+        if (element['$']) {
+            htmlString += element['$'];
+        }
+        else if (element.term) {
+            htmlString += `<span class="term">${element.term['$']}</span>`;
+        }
+    });
+
+    return Ember.String.htmlSafe(htmlString);
 };
 
 export function attributedString(params) {
@@ -11,7 +24,14 @@ export function attributedString(params) {
 
     textArray.forEach(element => {
         if (element['$']) {
-            htmlString += element['$'];
+            const str = element['$'];
+
+            if (str.startsWith('\n')) {
+                htmlString += `<p>${str}</p>`;
+            }
+            else {
+                htmlString += element['$'];
+            }
         }
         else if (element.definition) {
             htmlString += generateDefinitionHTML(element.definition);
