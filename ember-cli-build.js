@@ -3,7 +3,12 @@
 var EmberApp = require('ember-cli/lib/broccoli/ember-app');
 
 module.exports = function(defaults) {
-  var app = new EmberApp(defaults, {
+    var app = new EmberApp(defaults, {
+
+        'ember-prism': {
+            'components': ['java', 'clike', 'python'],
+            'plugins': ['line-highlight']
+        }
     // Add options here
   });
 

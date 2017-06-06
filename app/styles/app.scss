@@ -138,10 +138,6 @@ main {
     min-height: $toolbar-height;
     position: relative;
 
-    .menu-button {
-        margin-left: 16px;
-    }
-
     .menu-button,
     .toolbar-button,
     .toolbar-menu-toggle {
@@ -221,6 +217,7 @@ $zb-card-content-padding: 24px;
             @extend %primary-font-regular;
             font-size: 16px;
             margin-bottom: 8px;
+            margin-left: 0;
             margin-top: 8px;
         }
     }
@@ -253,6 +250,5 @@ $zb-card-content-padding: 24px;
     h2 {
         @extend %primary-font-regular;
         font-size: 32px;
-        margin-left: 16px;
     }
 }
