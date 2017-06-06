@@ -29,8 +29,6 @@ const commentClass = contentResourceBase.extend({
 
         this._super(...arguments);
 
-        debugger;
-
         this.setProperties({
             name: json.name['$'],
             text: json.comment['$'],
@@ -61,6 +59,24 @@ const codeClass = contentResourceBase.extend({
     },
 });
 
+
+const imageClass = contentResourceBase.extend({
+
+    url: null,
+
+//    componentName: 'code-resource',
+
+    fromJSON: function(json) {
+
+        this._super(...arguments);
+
+        this.setProperties({
+            url: json.url['$'],
+          });
+
+        return this;
+    },
+});
 
 // Base class for a zypInfo
 const zypInfoClass = Ember.Object.extend({
@@ -95,7 +111,9 @@ var crFromJSON = function(json) {
     case 'CodeResource':
         crClass = codeClass;
         break;
-
+    case 'ImageResource':
+        crClass = imageClass;
+        break;
     }
 
     return crClass.create().fromJSON(json);
