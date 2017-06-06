@@ -1,5 +1,7 @@
 import Ember from 'ember';
 
+const typeField = '@{http://www.w3.org/2001/XMLSchema-instance}type';
+
 // Base class for content resources
 const contentResourceBase = Ember.Object.extend({
     type: null,
@@ -7,12 +9,32 @@ const contentResourceBase = Ember.Object.extend({
 
     fromJSON: function(json) {
 
-        const typeField = '@{http://www.w3.org/2001/XMLSchema-instance}type';
-
         this.setProperties({
             type: json[typeField],
             guid: json['@guid'],
         });
+        return this;
+    },
+});
+
+const commentClass = contentResourceBase.extend({
+
+    comment: null,
+    name: null,
+    timestamp: null,
+
+    fromJSON: function(json) {
+
+        this._super(...arguments);
+
+        debugger;
+
+        this.setProperties({
+            name: json.name['$'],
+            text: json.comment['$'],
+            timestamp: new Date(json.timestamp['$']),
+        });
+
         return this;
     },
 });
@@ -37,9 +59,19 @@ const zypInfoClass = Ember.Object.extend({
     },
 });
 
-
 var crFromJSON = function(json) {
-    return contentResourceBase.create().fromJSON(json);
+
+    const crType = json[typeField];
+    let crClass = contentResourceBase;
+
+    console.log(crType);
+    switch(crType) {
+    case 'CommentResource':
+        crClass = commentClass;
+        break;
+    }
+
+    return crClass.create().fromJSON(json);
 }
 
 // Section model
