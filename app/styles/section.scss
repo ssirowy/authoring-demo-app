@@ -1,0 +1,42 @@
+.term {
+    font-weight: bold;
+    font-style: italic;
+}
+
+.main-section {
+    display: flex;
+}
+
+.zypinfo-card {
+    @extend %body-text;
+    margin-left: 16px;
+    max-height: 400px;
+    width: 300px;
+
+    h3 {
+        margin-top: 0;
+    }
+
+    ul {
+        list-style-type: none;
+        padding-left: 0;
+
+        li {
+            margin-bottom: 8px;
+        }
+    }
+
+    .user {
+        font-weight: bold;
+    }
+
+    .comment {
+        margin-left: 4px;
+        font-style: italic;
+    }
+}
+
+.section-container {
+    margin-left: 16px;
+    margin-right: 16px;
+}
