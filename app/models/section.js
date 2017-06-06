@@ -72,7 +72,27 @@ const imageClass = contentResourceBase.extend({
 
         this.setProperties({
             url: json.url['$'],
-          });
+        });
+
+        return this;
+    },
+});
+
+
+const textClass = contentResourceBase.extend({
+
+    // JSON object.
+    text: null,
+
+    componentName: 'text-resource',
+
+    fromJSON: function(json) {
+
+        this._super(...arguments);
+
+        this.setProperties({
+            text: json['#'],
+        });
 
         return this;
     },
@@ -103,7 +123,6 @@ var crFromJSON = function(json) {
     const crType = json[typeField];
     let crClass = contentResourceBase;
 
-    console.log(crType);
     switch(crType) {
     case 'CommentResource':
         crClass = commentClass;
@@ -113,6 +132,9 @@ var crFromJSON = function(json) {
         break;
     case 'ImageResource':
         crClass = imageClass;
+        break;
+    case 'TextResource':
+        crClass = textClass;
         break;
     }
 

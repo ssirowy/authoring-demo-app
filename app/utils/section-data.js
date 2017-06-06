@@ -33,21 +33,27 @@ export default function fetchSectionData() {
                 "contentResource": [{
                     "@{http://www.w3.org/2001/XMLSchema-instance}type": "TextResource",
                     "@guid": 12345678,
-                    "definition": {
-                        "#": [{
-                            "term": {
-                                "$": "Programming"
-                            }
-                        }, {
-                            "$": "is defined as tinkering with stuff"
-                        }]
-                    }
+                    "#": [{
+                        "$": "\n\n     Here is a line of text, followed by a definition.\n\n     "
+                    }, {
+                        "definition": {
+                            "#": [{
+                                "term": {
+                                    "$": "Programming"
+                                }
+                            }, {
+                                "$": " is defined as tinkering with stuff "
+                            }]
+                        }
+                    }, {
+                        "$": "\n\n     Here is yet another line of text.\n"
+                    }]
                 }, {
                     "@{http://www.w3.org/2001/XMLSchema-instance}type": "CodeResource",
                     "@guid": 12345679,
                     "@language": "cpp",
                     "code": {
-                        "$": "#include iostream\n         using namespace std;\n          \n         int main() {\n              cout something;\n         }"
+                        "$": "#include iostream\n         using namespace std;\n\n         int main() {\n              cout something;\n         }"
                     }
                 }, {
                     "@{http://www.w3.org/2001/XMLSchema-instance}type": "MultipleChoiceResource",
@@ -74,7 +80,7 @@ export default function fetchSectionData() {
                                 "$": "Round"
                             },
                             "explanation": {
-                                "$": "The worl is round."
+                                "$": "The world is round."
                             }
                         }]
                     }, {
@@ -119,7 +125,7 @@ export default function fetchSectionData() {
                     "@{http://www.w3.org/2001/XMLSchema-instance}type": "ImageResource",
                     "@guid": 56712367,
                     "url": {
-                        "$": "http://www.3ders.org/images2015/mythbusters-3d-models-homer-simpson-new-experiment-00005.png"
+                        "$": "https://lh3.googleusercontent.com/-UtU9iSF27A8/VUsH4GaacbI/AAAAAAAAEdg/ZDgE1pgl3aQ/w788-h500/homer-computer-woohoo.jpg"
                     }
                 }]
             }
