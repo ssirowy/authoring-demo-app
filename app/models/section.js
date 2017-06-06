@@ -78,7 +78,6 @@ const imageClass = contentResourceBase.extend({
     },
 });
 
-
 const textClass = contentResourceBase.extend({
 
     // JSON object.
