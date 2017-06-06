@@ -1,3 +1,4 @@
-<div>{{resource.name}}</div>
-<div>{{resource.comment}}</div>
-<div>{{moment resource.timestamp 'MM-DD-YYYY'}}</div>
+<div class='zb-card-content'>
+  <div><span class='user'>{{resource.name}}</span> - {{moment-format resource.timestamp 'MM/DD/YY'}}</div>
+  <blockquote>{{resource.text}}</blockquote>
+</div>

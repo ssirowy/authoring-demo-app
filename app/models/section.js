@@ -139,7 +139,7 @@ var crFromJSON = function(json) {
     }
 
     return crClass.create().fromJSON(json);
-}
+};
 
 // Section model
 export default Ember.Object.extend({

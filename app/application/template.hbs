@@ -13,15 +13,13 @@
     <article class='zybook-section zb-card'>
       <div class='zb-card-content'>
         <h2>{{section.title}}</h2>
-        <section>
-            {{#each section.contentResources as |resource|}}
-              {{#if resource.componentName}}
-                  {{component resource.componentName resource=resource}}
-              {{else}}
-                  {{resource.type}}
-              {{/if}}
-            {{/each}}
-        </section>
+        {{#each section.contentResources as |resource|}}
+            {{#if resource.componentName}}
+                {{component resource.componentName resource=resource}}
+            {{else}}
+                {{resource.type}}
+            {{/if}}
+        {{/each}}
       </div>
     </article>
   </section>

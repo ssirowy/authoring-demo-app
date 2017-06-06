@@ -1,5 +1,4 @@
 @import 'normalize';
-@import 'section';
 
 $toolbar-height: 56px;
 $grey-100: #f5f5f5;
@@ -192,7 +191,6 @@ main {
 $zb-card-content-padding: 24px;
 
 .zb-card {
-    @extend %flex-column;
     background-color: white;
     border-radius: 2px;
     box-shadow: $whiteframe-shadow-z1;
@@ -203,7 +201,6 @@ $zb-card-content-padding: 24px;
         width: 120px;
 
         .zb-card-content {
-            @extend %flex-column;
             padding-bottom: 8px;
             padding-top: 16px;
             position: relative;
@@ -223,6 +220,7 @@ $zb-card-content-padding: 24px;
     }
 
     .zb-card-content {
+        @extend %flex-column;
         padding: $zb-card-content-padding;
 
         > *:first-child {
@@ -252,3 +250,6 @@ $zb-card-content-padding: 24px;
         font-size: 32px;
     }
 }
+
+
+@import 'section';

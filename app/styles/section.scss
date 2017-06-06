@@ -26,10 +26,6 @@
         }
     }
 
-    .user {
-        font-weight: bold;
-    }
-
     .comment {
         margin-left: 4px;
         font-style: italic;
@@ -39,4 +35,22 @@
 .section-container {
     margin-left: 16px;
     margin-right: 16px;
+}
+
+.image-resource {
+    align-self: center;
+}
+
+.user {
+    font-weight: bold;
+}
+
+.comment-resource {
+    align-self: flex-end;
+    border-left: 5px solid $grey-600;
+
+    blockquote {
+        margin-left: 0;
+        font-style: italic;
+    }
 }
