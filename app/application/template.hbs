@@ -24,17 +24,17 @@
         </section>
 
         <section>
-          <ul>
+
             {{#each section.contentResources as |resource|}}
-            <li>
+
               {{#if resource.componentName}}
                   {{component resource.componentName resource=resource}}
               {{else}}
                   {{resource.type}}
               {{/if}}
-            </li>
+
             {{/each}}
-          </ul>
+
         </section>
         </div>
         </article>

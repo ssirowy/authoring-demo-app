@@ -64,7 +64,7 @@ const imageClass = contentResourceBase.extend({
 
     url: null,
 
-//    componentName: 'code-resource',
+    componentName: 'image-resource',
 
     fromJSON: function(json) {
 

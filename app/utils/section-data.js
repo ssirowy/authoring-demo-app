@@ -119,7 +119,7 @@ export default function fetchSectionData() {
                     "@{http://www.w3.org/2001/XMLSchema-instance}type": "ImageResource",
                     "@guid": 56712367,
                     "url": {
-                        "$": "https://goo.gl/88nu4w"
+                        "$": "http://www.3ders.org/images2015/mythbusters-3d-models-homer-simpson-new-experiment-00005.png"
                     }
                 }]
             }
