@@ -1,0 +1,6 @@
+<input type='radio' class='{{color}}' name={{name}} value={{value}} checked={{checked}} disabled={{disabled}} onClick={{action (mut selected) value}}/>
+{{#unless textUnder}}
+    {{displayText}}
+{{else}}
+    <div class='display-text'>{{displayText}}</div>
+{{/unless}}

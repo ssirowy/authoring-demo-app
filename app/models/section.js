@@ -152,6 +152,8 @@ const questionResourceClass = contentResourceBase.extend({
             questions: json.question.map(questionJSON => questionClass.create().fromJSON(questionJSON)),
         });
 
+        this.get('questions').forEach((question, index) => { question.set('number', index + 1); });
+
         return this;
     },
 });

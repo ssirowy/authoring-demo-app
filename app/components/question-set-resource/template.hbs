@@ -1,3 +1,22 @@
-{{#each resource.questions as |question index|}}
-<div>{{index}}. {{question.text}}</div>
+{{#each resource.questions as |question|}}
+    <div>{{question.number}}. {{question.text}}</div>
+    <fieldset>
+        {{#each question.choices as |choice|}}
+            {{zb-radio-button value=choice
+                              selected=question.selectedChoice
+                              click=(action 'choiceClicked' question)
+                              displayText=choice.text
+                              name=question.enumeration
+                              color='orange'}}
+        {{/each}}
+    </fieldset>
+
+    <div class='explanation'>
+    {{#if question.showExplanation}}
+        <p class='message'>
+            {{if question.correct 'Correct' 'Incorrect'}}
+        </p>
+        {{question.explanation}}
+    {{/if}}
+    </div>
 {{/each}}
