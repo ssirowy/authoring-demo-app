@@ -97,6 +97,65 @@ const textClass = contentResourceBase.extend({
     },
 });
 
+const choiceClass = Ember.Object.extend({
+
+    correct: false,
+
+    label: null,
+
+    explanation: null,
+
+    fromJSON: function(json) {
+
+        this._super(...arguments);
+
+        this.setProperties({
+            correct: json.correct['$'],
+            label: json.label['$'],
+            expalanation: json.explanation['$'],
+        });
+
+        return this;
+    },
+});
+
+const questionClass = Ember.Object.extend({
+
+    text: null,
+
+    choices: null,
+
+    fromJSON: function(json) {
+
+        this._super(...arguments);
+
+        this.setProperties({
+            text: json.text['$'],
+            choices: json.choice.map(choiceJSON => choiceClass.create().fromJSON(choiceJSON)),
+        });
+
+        return this;
+    },
+});
+
+const questionResourceClass = contentResourceBase.extend({
+
+    componentName: 'question-set-resource',
+
+    questions: null,
+
+    fromJSON: function(json) {
+
+        this._super(...arguments);
+
+        this.setProperties({
+            questions: json.question.map(questionJSON => questionClass.create().fromJSON(questionJSON)),
+        });
+
+        return this;
+    },
+});
+
 // Base class for a zypInfo
 const zypInfoClass = Ember.Object.extend({
 
@@ -134,6 +193,9 @@ var crFromJSON = function(json) {
         break;
     case 'TextResource':
         crClass = textClass;
+        break;
+    case 'MultipleChoiceResource':
+        crClass = questionResourceClass;
         break;
     }
 

@@ -26,7 +26,6 @@ export function attributedString(params) {
         if (element['$']) {
             const str = element['$'];
 
-            debugger;
             if (str.startsWith('\n')) {
                 htmlString += `<p>${str}</p>`;
             }
