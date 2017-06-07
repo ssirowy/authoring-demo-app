@@ -5,6 +5,8 @@ $grey-100: #f5f5f5;
 $grey-600: #757575;
 $foreground-dark: rgba(0, 0, 0, .54);
 $body-text-color: #37474f;
+$primary: $body-text-color;
+$blue-grey-800: #37474f;
 
 $flex-justify-content-values: ('flex-start', 'flex-end', 'center', 'space-between', 'space-around');
 $flex-align-items-values: ('flex-start', 'flex-end', 'center', 'stretch', 'baseline');
@@ -66,6 +68,13 @@ h6,
     font-family: $primary-font;
     font-weight: 400;
 }
+
+.primary-font-bold,
+%primary-font-bold {
+    font-family: $primary-font;
+    font-weight: 700;
+}
+
 
 @mixin flex-options {
     &.flex-wrap {
@@ -253,3 +262,4 @@ $zb-card-content-padding: 24px;
 
 
 @import 'section';
+@import 'nav-menu';

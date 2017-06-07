@@ -9,10 +9,12 @@
     </div>
 </header>
 <main class='main-section'>
-  <ul>
-    {{#each sections as |section|}}
-        <li>{{#link-to 'section' section.number}}{{section.title}}{{/link-to}}</li>
-    {{/each}}
-  </ul>
+  <div class='zb-nav-menu'>
+      <ul>
+        {{#each sections as |section|}}
+            <li>{{#link-to 'section' section.number}}{{section.title}}{{/link-to}}</li>
+        {{/each}}
+      </ul>
+  </div>
   {{outlet}}
 </main>
