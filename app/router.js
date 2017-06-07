@@ -7,6 +7,7 @@ const Router = Ember.Router.extend({
 });
 
 Router.map(function() {
+    this.route('section', { path: 'section/:section_number' });
 });
 
 export default Router;

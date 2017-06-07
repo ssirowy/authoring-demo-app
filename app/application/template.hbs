@@ -9,35 +9,10 @@
     </div>
 </header>
 <main class='main-section'>
-  <section class='section-container'>
-    <article class='zybook-section zb-card'>
-      <div class='zb-card-content'>
-        <h2>{{section.title}}</h2>
-        {{#each section.contentResources as |resource|}}
-            {{#if resource.componentName}}
-                {{component resource.componentName resource=resource}}
-            {{else}}
-                {{resource.type}}
-            {{/if}}
-        {{/each}}
-      </div>
-    </article>
-  </section>
-  <div class='zb-card zypinfo-card'>
-    <div class='zb-card-content'>
-      <section>
-        <h3>Work log</h3>
-        <ul>
-          {{#each section.zypInfos as |info|}}
-          <li>
-            <div>
-              <span class='user'>{{info.name}}</span> {{moment-format info.timestamp 'MM/DD/YY'}}
-            </div>
-            <div class='comment'>{{info.text}}</div>
-          </li>
-          {{/each}}
-        </ul>
-      </section>
-    </div>
-  </div>
+  <ul>
+    {{#each sections as |section|}}
+        <li>{{#link-to 'section' section.number}}{{section.title}}{{/link-to}}</li>
+    {{/each}}
+  </ul>
+  {{outlet}}
 </main>

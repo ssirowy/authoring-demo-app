@@ -1,0 +1,31 @@
+<section class='section-container'>
+  <article class='zybook-section zb-card'>
+      <div class='zb-card-content'>
+        <h2>{{content.title}}</h2>
+        {{#each content.contentResources as |resource|}}
+            {{#if resource.componentName}}
+                {{component resource.componentName resource=resource}}
+            {{else}}
+                {{resource.type}}
+            {{/if}}
+        {{/each}}
+      </div>
+    </article>
+  </section>
+  <div class='zb-card zypinfo-card'>
+    <div class='zb-card-content'>
+      <section>
+        <h3>Work log</h3>
+        <ul>
+          {{#each content.zypInfos as |info|}}
+          <li>
+            <div>
+              <span class='user'>{{info.name}}</span> {{moment-format info.timestamp 'MM/DD/YY'}}
+            </div>
+            <div class='comment'>{{info.text}}</div>
+          </li>
+          {{/each}}
+        </ul>
+      </section>
+    </div>
+  </div>
