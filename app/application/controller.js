@@ -4,15 +4,15 @@ import sectionModelClass from '../models/section';
 
 export default Ember.Controller.extend({
 
-    section: null,
+    sections: null,
 
     init: function() {
-        const sectionJSON = fetchSectionData();
+        const sectionsJSON = fetchSectionData();
 
-        console.log(sectionJSON);
+        console.log(sectionsJSON);
 
-        const section = sectionModelClass.create().fromJSON(sectionJSON);
+        const sections = sectionsJSON.map(sectionJSON => sectionModelClass.create().fromJSON(sectionJSON));
 
-        this.set('section', section);
+        this.set('section', sections[0]);
     },
 });

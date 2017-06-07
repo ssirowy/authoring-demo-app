@@ -213,12 +213,12 @@ export default Ember.Object.extend({
 
     fromJSON: function(json) {
 
-        const infos = json.section.zypInfos.zypInfo.map(infoJSON => zypInfoClass.create().fromJSON(infoJSON));
+        const infos = json.zypInfos.zypInfo.map(infoJSON => zypInfoClass.create().fromJSON(infoJSON));
 
-        const contentResources = json.section.contentResources.contentResource.map(crJSON => crFromJSON(crJSON));
+        const contentResources = json.contentResources.contentResource.map(crJSON => crFromJSON(crJSON));
 
         this.setProperties({
-            title: json.section.title['$'],
+            title: json.title['$'],
             zypInfos: infos,
             contentResources,
         });
