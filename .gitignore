@@ -16,4 +16,4 @@
 npm-debug.log*
 testem.log
 
-app/utils/section-data.js
+app/utils/*
