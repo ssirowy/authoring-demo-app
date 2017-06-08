@@ -64,6 +64,8 @@ const imageClass = contentResourceBase.extend({
 
     url: null,
 
+    caption: null,
+
     componentName: 'image-resource',
 
     fromJSON: function(json) {
@@ -72,6 +74,7 @@ const imageClass = contentResourceBase.extend({
 
         this.setProperties({
             url: json.url['$'],
+            caption: json.caption['$'],
         });
 
         return this;
@@ -123,7 +126,7 @@ const choiceClass = Ember.Object.extend({
         this.setProperties({
             correct: json.correct['$'],
             label: json.label['$'],
-            expalanation: json.explanation['$'],
+            explanation: json.explanation['$'],
         });
 
         return this;
