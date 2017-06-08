@@ -7,7 +7,7 @@
         {{#each question.choices as |choice|}}
             {{zb-radio-button value=choice
                               selected=question.selectedChoice
-                              click=(action 'choiceClicked' question)
+                              click=(action 'choiceClicked' question choice)
                               displayText=choice.label
                               name=question.enumeration
                               color='orange'}}
@@ -17,7 +17,7 @@
     <div class='explanation'>
     {{#if question.showExplanation}}
         <p class='message'>
-            {{if question.correct 'Correct' 'Incorrect'}}
+            {{if question.selectedChoice.correct 'Correct' 'Incorrect'}}
         </p>
         {{question.explanation}}
     {{/if}}

@@ -10,7 +10,8 @@ export default Ember.Component.extend({
            @method choiceClicked
            @return {void}
         */
-        choiceClicked: function(question) {
+        choiceClicked: function(question, choice) {
+            question.set('selectedChoice', choice);
             question.set('showExplanation', true);
         },
     }
