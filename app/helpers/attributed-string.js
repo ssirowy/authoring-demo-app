@@ -23,21 +23,34 @@ export function attributedString(params) {
     let htmlString = '';
     let openParagraph = false;
 
-    textArray.forEach(element => {
+    textArray.forEach((element, index) => {
         if (element['$']) {
             let str = element['$'];
 
-            // Matches two newline characters (possibly separated by spaces) and replaces with <p> tags.
-            str = str.replace(/[\r?\n|\r][^\S\r\n]*[\r?\n|\r]/g, () => {
+            // Internal function that returns the next <p> tag.
+            const replaceWithPTags = () => {
                 const returnVal = openParagraph ? '</p><p>' : '<p>';
 
                 openParagraph = !openParagraph;
                 return returnVal;
-            });
+            };
+
+            // Replace starting newline with paragraph tag
+            str = str.replace(/^[^\S\r\n]*[\r?\n|\r]/g, replaceWithPTags);
+
+            // Matches two newline characters (possibly separated by spaces) and replaces with <p> tags.
+            str = str.replace(/[\r?\n|\r][^\S\r\n]*[\r?\n|\r]/g, replaceWithPTags);
 
             htmlString += str;
         }
         else if (element.definition) {
+
+            // If this this the first child, open up a paragraph.
+            if (index === 0) {
+                htmlString += '<p>';
+                openParagraph = !openParagraph;
+            }
+
             htmlString += generateDefinitionHTML(element.definition);
         }
     });
