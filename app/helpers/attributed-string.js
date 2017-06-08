@@ -29,7 +29,7 @@ export function attributedString(params) {
 
             if (str.startsWith('\n')) {
                 htmlString += openParagraph ? '</p><p>' : '<p>';
-                openParagraph != openParagraph;
+                openParagraph = !openParagraph;
             }
             else {
                 htmlString += element['$'];

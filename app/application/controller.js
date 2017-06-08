@@ -13,7 +13,7 @@ export default Ember.Controller.extend({
 
         const sections = sectionsJSON.map(sectionJSON => sectionModelClass.create().fromJSON(sectionJSON));
 
-        sections.forEach((section, index) => { section.set('number', index + 1)});
+        sections.forEach((section, index) => { section.set('number', index + 1); });
 
         this.set('sections', sections);
     },

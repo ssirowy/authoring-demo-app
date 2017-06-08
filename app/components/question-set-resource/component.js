@@ -10,8 +10,7 @@ export default Ember.Component.extend({
            @return {void}
         */
         choiceClicked: function(question) {
-            this.set('question.showExplanation', true);
+            question.set('showExplanation', true);
         },
-
     }
 });
