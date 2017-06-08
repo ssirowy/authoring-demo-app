@@ -27,21 +27,14 @@ export function attributedString(params) {
         if (element['$']) {
             let str = element['$'];
 
-            // Replace newline followed by spaces (at end of string) with just a newline
-            str = str.replace(/\n[^\S\r\n]*$/, '\n');
+            str = str.replace(/[\r?\n|\r]{2}/g, () => {
+                const returnVal = openParagraph ? '</p><p>' : '<p>';
 
-            if (str.startsWith('\n')) {
-                htmlString += openParagraph ? '</p><p>' : '<p>';
                 openParagraph = !openParagraph;
-            }
+                return returnVal;
+            });
 
-            // Append str with line breaks removed
-            htmlString += str.replace(/\r?\n|\r/g, '');
-
-            if (str.endsWith('\n') && str.length > 1) {
-                htmlString += openParagraph ? '</p><p>' : '<p>';
-                openParagraph = !openParagraph;
-            }
+            htmlString += str;
         }
         else if (element.definition) {
             htmlString += generateDefinitionHTML(element.definition);
@@ -50,6 +43,7 @@ export function attributedString(params) {
 
     if (openParagraph) {
         htmlString += '</p>';
+        openParagraph = !openParagraph;
     }
 
     return Ember.String.htmlSafe(htmlString);
