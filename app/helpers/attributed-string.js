@@ -21,13 +21,15 @@ export function attributedString(params) {
 
     const textArray = params[0];
     let htmlString = '';
+    let openParagraph = false;
 
     textArray.forEach(element => {
         if (element['$']) {
             const str = element['$'];
 
             if (str.startsWith('\n')) {
-                htmlString += `<p>${str}</p>`;
+                htmlString += openParagraph ? '</p><p>' : '<p>';
+                openParagraph != openParagraph;
             }
             else {
                 htmlString += element['$'];
@@ -37,6 +39,10 @@ export function attributedString(params) {
             htmlString += generateDefinitionHTML(element.definition);
         }
     });
+
+    if (openParagraph) {
+        htmlString += '</p>';
+    }
 
     return Ember.String.htmlSafe(htmlString);
 }
