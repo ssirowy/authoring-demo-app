@@ -27,7 +27,8 @@ export function attributedString(params) {
         if (element['$']) {
             let str = element['$'];
 
-            str = str.replace(/[\r?\n|\r]{2}/g, () => {
+            // Matches two newline characters (possibly separated by spaces) and replaces with <p> tags.
+            str = str.replace(/[\r?\n|\r][^\S\r\n]*[\r?\n|\r]/g, () => {
                 const returnVal = openParagraph ? '</p><p>' : '<p>';
 
                 openParagraph = !openParagraph;
