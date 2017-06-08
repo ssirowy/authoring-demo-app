@@ -1,3 +1,6 @@
+<div class='zb-card-content'>
+<h3>Multiple choice activitiy</h3>
+
 {{#each resource.questions as |question|}}
     <div>{{question.number}}. {{question.text}}</div>
     <fieldset>
@@ -5,7 +8,7 @@
             {{zb-radio-button value=choice
                               selected=question.selectedChoice
                               click=(action 'choiceClicked' question)
-                              displayText=choice.text
+                              displayText=choice.label
                               name=question.enumeration
                               color='orange'}}
         {{/each}}
@@ -19,4 +22,5 @@
         {{question.explanation}}
     {{/if}}
     </div>
-{{/each}}
+    {{/each}}
+</div>
