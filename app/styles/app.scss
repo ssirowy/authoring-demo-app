@@ -259,6 +259,7 @@ $zb-card-content-padding: 24px;
     h2 {
         @extend %primary-font-regular;
         font-size: 32px;
+        margin-bottom: 0;
     }
 }
 
