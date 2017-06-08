@@ -25,14 +25,22 @@ export function attributedString(params) {
 
     textArray.forEach(element => {
         if (element['$']) {
-            const str = element['$'];
+            let str = element['$'];
+
+            // Replace newline followed by spaces (at end of string) with just a newline
+            str = str.replace(/\n[^\S\r\n]*$/, '\n');
 
             if (str.startsWith('\n')) {
                 htmlString += openParagraph ? '</p><p>' : '<p>';
                 openParagraph = !openParagraph;
             }
-            else {
-                htmlString += element['$'];
+
+            // Append str with line breaks removed
+            htmlString += str.replace(/\r?\n|\r/g, '');
+
+            if (str.endsWith('\n') && str.length > 1) {
+                htmlString += openParagraph ? '</p><p>' : '<p>';
+                openParagraph = !openParagraph;
             }
         }
         else if (element.definition) {

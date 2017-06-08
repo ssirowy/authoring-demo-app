@@ -89,8 +89,19 @@ const textClass = contentResourceBase.extend({
 
         this._super(...arguments);
 
+        let text = [];
+
+        if (json.hasOwnProperty('#')) {
+            text = json['#'];
+        }
+        else {
+
+            // eslint-disable-next-line id-length
+            text.pushObject({ $: json.$ });
+        }
+
         this.setProperties({
-            text: json['#'],
+            text,
         });
 
         return this;
@@ -214,10 +225,12 @@ export default Ember.Object.extend({
     contentResources: null,
 
     fromJSON: function(json) {
+        const infosJSON = Array.isArray(json.zypInfos.zypInfo) ? json.zypInfos.zypInfo : [ json.zypInfos.zypInfo ];
+        const infos = infosJSON.map(infoJSON => zypInfoClass.create().fromJSON(infoJSON));
 
-        const infos = json.zypInfos.zypInfo.map(infoJSON => zypInfoClass.create().fromJSON(infoJSON));
-
-        const contentResources = json.contentResources.contentResource.map(crJSON => crFromJSON(crJSON));
+        const crsJSON = Array.isArray(json.contentResources.contentResource) ?
+                  json.contentResources.contentResource : [ json.contentResources.contentResource ];
+        const contentResources = crsJSON.map(crJSON => crFromJSON(crJSON));
 
         this.setProperties({
             title: json.title['$'],
