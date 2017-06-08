@@ -123,7 +123,7 @@ const choiceClass = Ember.Object.extend({
         this.setProperties({
             correct: json.correct['$'],
             label: json.label['$'],
-            expalanation: json.explanation['$'],
+            explanation: json.explanation['$'],
         });
 
         return this;

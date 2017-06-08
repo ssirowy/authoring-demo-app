@@ -15,11 +15,10 @@
     </fieldset>
 
     <div class='explanation'>
-    {{#if question.showExplanation}}
+    {{#if question.selectedChoice}}
         <p class='message'>
-            {{if question.selectedChoice.correct 'Correct' 'Incorrect'}}
+            <span class="{{if question.selectedChoice.correct 'correct' 'incorrect'}}">{{if question.selectedChoice.correct 'Correct' 'Incorrect'}}</span> - {{question.selectedChoice.explanation}}
         </p>
-        {{question.explanation}}
     {{/if}}
     </div>
     {{/each}}
