@@ -23,23 +23,23 @@ export function attributedString(params) {
     let htmlString = '';
     let openParagraph = false;
 
+    // Internal function that returns the next <p> tag.
+    const getNextPTag = () => {
+        const returnVal = openParagraph ? '</p><p>' : '<p>';
+
+        openParagraph = !openParagraph;
+        return returnVal;
+    };
+
     textArray.forEach((element, index) => {
         if (element['$']) {
             let str = element['$'];
 
-            // Internal function that returns the next <p> tag.
-            const replaceWithPTags = () => {
-                const returnVal = openParagraph ? '</p><p>' : '<p>';
-
-                openParagraph = !openParagraph;
-                return returnVal;
-            };
-
             // Replace starting newline with paragraph tag
-            str = str.replace(/^[^\S\r\n]*[\r?\n|\r]/g, replaceWithPTags);
+            str = str.replace(/^[^\S\r\n]*[\r?\n|\r]/g, getNextPTag);
 
             // Matches two newline characters (possibly separated by spaces) and replaces with <p> tags.
-            str = str.replace(/[\r?\n|\r][^\S\r\n]*[\r?\n|\r]/g, replaceWithPTags);
+            str = str.replace(/[\r?\n|\r][^\S\r\n]*[\r?\n|\r]/g, getNextPTag);
 
             htmlString += str;
         }
@@ -47,8 +47,7 @@ export function attributedString(params) {
 
             // If this this the first child, open up a paragraph.
             if (index === 0) {
-                htmlString += '<p>';
-                openParagraph = !openParagraph;
+                htmlString += getNextPTag();
             }
 
             htmlString += generateDefinitionHTML(element.definition);
