@@ -2,6 +2,7 @@ import Ember from 'ember';
 
 export default Ember.Component.extend({
 
+    classNames: ['zb-card', 'multiple-choice-resource'],
 
     actions: {
         /**
